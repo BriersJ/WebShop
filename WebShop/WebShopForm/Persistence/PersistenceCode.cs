@@ -7,6 +7,6 @@ namespace WebShopForm.Persistence
 {
     public class PersistenceCode
     {
-        string connStr = "server=localhost;database=dbwebshop;password=Test123;user id=root";
+        string connStr = "server=localhost;database=dbshop;password=Test123;user id=root";
     }
 }
