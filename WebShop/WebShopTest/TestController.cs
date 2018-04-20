@@ -26,5 +26,29 @@ namespace WebShopTest
             Assert.AreEqual(product.Stock, 60);
             Assert.AreEqual(product.Price, 500.45);
         }
+
+        [TestMethod]
+        public void Login_CorrectCredentials_True()
+        {
+            Assert.IsTrue(controller.Login("Test", "Test123"));
+        }
+
+        [TestMethod]
+        public void Login_IncorrectCredentials_False()
+        {
+            Assert.IsFalse(controller.Login("Test", "test123"));
+        }
+
+        [TestMethod]
+        public void UserExists_ExistingUser_True()
+        {
+            Assert.IsTrue(controller.UserExists("Test"));
+        }
+
+        [TestMethod]
+        public void UserExists_NonexistingUser_False()
+        {
+            Assert.IsFalse(controller.UserExists("NonExistingTest"));
+        }
     }
 }

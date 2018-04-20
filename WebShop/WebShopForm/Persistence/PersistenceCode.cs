@@ -36,5 +36,29 @@ namespace WebShopForm.Persistence
             connection.Close();
             return productList;
         }
+
+        public bool Login(string loginName, string password)
+        {
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "select * from tblusers where loginname = '" + loginName + "' and binary password = '" + password + "'";
+            var command = new MySqlCommand(querryStr, connection);
+            var querryOutput = command.ExecuteReader();
+            bool credentialsAreCorrect = querryOutput.HasRows;
+            connection.Close();
+            return credentialsAreCorrect;
+        }
+
+        public bool UserExists(string loginName)
+        {
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "select * from tblusers where loginname = '" + loginName + "'";
+            var command = new MySqlCommand(querryStr, connection);
+            var querryOutput = command.ExecuteReader();
+            bool userExists = querryOutput.HasRows;
+            connection.Close();
+            return userExists;
+        }
     }
 }

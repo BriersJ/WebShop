@@ -14,5 +14,15 @@ namespace WebShopForm.Business
         {
             return persistenceCode.GetProducts();
         }
+
+        public bool Login(string loginName, string password)
+        {
+            return persistenceCode.Login(loginName, password);
+        }
+
+        public bool UserExists(string loginName)
+        {
+            return persistenceCode.UserExists(loginName);
+        }
     }
 }
