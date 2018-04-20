@@ -19,7 +19,12 @@ namespace WebShopTest
         public void GetProducts_NonEmptyDatabase_Success()
         {
             var products = controller.GetProducts();
-            Assert.IsTrue(products.Capacity >= 1);
+            Product product = products[0];
+            Assert.AreEqual(product.ID, 1);
+            Assert.AreEqual(product.Name, "Test1");
+            Assert.AreEqual(product.Picture, "Test1.jpg");
+            Assert.AreEqual(product.Stock, 60);
+            Assert.AreEqual(product.Price, 500.45);
         }
     }
 }
