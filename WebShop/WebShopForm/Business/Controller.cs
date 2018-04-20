@@ -24,5 +24,20 @@ namespace WebShopForm.Business
         {
             return persistenceCode.UserExists(loginName);
         }
+
+        public User GetUser(string loginName)
+        {
+            return persistenceCode.GetUser(loginName);
+        }
+
+        public User GetUser(int id)
+        {
+            return persistenceCode.GetUser(id);
+        }
+
+        public Product GetProduct(int id)
+        {
+            return persistenceCode.GetProduct(id);
+        }
     }
 }
