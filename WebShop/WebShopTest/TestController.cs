@@ -82,7 +82,7 @@ namespace WebShopTest
         [TestMethod]
         public void GetProduct_ProductID_Product()
         {
-            var product = controller.GetProduct(1);
+            Product product = controller.GetProduct(1);
             Assert.AreEqual(product.ID, 1);
             Assert.AreEqual(product.Name, "Test1");
             Assert.AreEqual(product.Picture, "Test1.jpg");
@@ -109,6 +109,36 @@ namespace WebShopTest
             Assert.AreEqual(product.Picture, "Test2.jpg");
             Assert.AreEqual(product.Stock, 125);
             Assert.AreEqual(product.Price, 40.99);
+        }
+
+        [TestMethod]
+        public void AddToCartAndRemoveFromCArt_User_ChangedCart()
+        {
+            User user = controller.GetUser(2);
+            Product product = controller.GetProduct(1);
+            int stock = product.Stock;
+
+            //Add and verify a product to the user's cart
+            controller.AddToCart(product, user, 20);
+            List<Product> productlist = controller.GetCart(user);
+            Product firstProduct = productlist[0];
+            Assert.AreEqual(product.ID, 1);
+            Assert.AreEqual(2, productlist.Capacity);
+            Assert.AreEqual(stock - 20, controller.GetProduct(1).Stock); // Check if there qre now 20 less avaidable of this product
+
+            //Remove the user's cart
+            controller.RemoveFromCart(product, user);
+            productlist = controller.GetCart(user);
+            firstProduct = productlist[0];
+            Assert.AreEqual(product.ID, 2);
+            Assert.AreEqual(1, productlist.Capacity);
+            Assert.AreEqual(stock, controller.GetProduct(1).Stock); // Check if the products are avaidable again
+        }
+
+        [TestMethod]
+        public void ClearCart_User_EmptyCart()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -53,7 +53,8 @@ namespace WebShopForm.Persistence
                     Name = Convert.ToString(querryOutput["Name"]),
                     Picture = Convert.ToString(querryOutput["Picture"]),
                     Price = Convert.ToDouble(querryOutput["Price"]),
-                    Stock = Convert.ToInt32(querryOutput["Stock"])
+                    Stock = Convert.ToInt32(querryOutput["Stock"]),
+                    AmountOrdered = Convert.ToInt32(querryOutput["amount"])
                 };
                 productList.Add(product);
             }

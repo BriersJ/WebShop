@@ -44,5 +44,15 @@ namespace WebShopForm.Business
         {
             return persistenceCode.GetCart(user);
         }
+
+        public void AddToCart(Product product, User user, int amount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveFromCart(Product product, User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

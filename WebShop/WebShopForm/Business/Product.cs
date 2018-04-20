@@ -7,7 +7,7 @@ namespace WebShopForm.Business
 {
     public class Product
     {
-        private int id, stock;
+        private int id, stock, amountOrdered;
         private string name, picture;
         private double price;
 
@@ -15,6 +15,12 @@ namespace WebShopForm.Business
         {
             set { id = value; }
             get { return id; }
+        }
+
+        public int AmountOrdered
+        {
+            set { amountOrdered = value; }
+            get { return amountOrdered; }
         }
 
         public int Stock
