@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebShopForm.Business;
+using System.Collections.Generic;
 
 namespace WebShopTest
 {
@@ -90,10 +91,24 @@ namespace WebShopTest
         }
 
         [TestMethod]
-        public void CartMisc()
+        public void GetCart_UserWithEmptyCart_EmptyList()
         {
             User user = controller.GetUser(1);
-            throw new NotImplementedException();
+            List<Product> productlist = controller.GetCart(user);
+            Assert.AreEqual(0, productlist.Capacity);
+        }
+
+        [TestMethod]
+        public void GetCart_UserWithCart_List()
+        {
+            User user = controller.GetUser(2);
+            List<Product> productlist = controller.GetCart(user);
+            Product product = productlist[0];
+            Assert.AreEqual(product.ID, 2);
+            Assert.AreEqual(product.Name, "Test2");
+            Assert.AreEqual(product.Picture, "Test2.jpg");
+            Assert.AreEqual(product.Stock, 125);
+            Assert.AreEqual(product.Price, 40.99);
         }
     }
 }

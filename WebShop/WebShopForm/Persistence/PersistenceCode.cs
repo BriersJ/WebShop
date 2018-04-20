@@ -37,6 +37,32 @@ namespace WebShopForm.Persistence
             return productList;
         }
 
+        public List<Product> GetCart(User user)
+        {
+            var productList = new List<Product>();
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "select * from tblproducts inner join tblcarts on tblcarts.productid = tblproducts.id where userid = " + user.ID;
+            var command = new MySqlCommand(querryStr, connection);
+            var querryOutput = command.ExecuteReader();
+            while (querryOutput.Read())
+            {
+                var product = new Product()
+                {
+                    ID = Convert.ToInt32(querryOutput["ID"]),
+                    Name = Convert.ToString(querryOutput["Name"]),
+                    Picture = Convert.ToString(querryOutput["Picture"]),
+                    Price = Convert.ToDouble(querryOutput["Price"]),
+                    Stock = Convert.ToInt32(querryOutput["Stock"])
+                };
+                productList.Add(product);
+            }
+
+
+            connection.Close();
+            return productList;
+        }
+
         public Product GetProduct(int id)
         {
             var connection = new MySqlConnection(connStr);

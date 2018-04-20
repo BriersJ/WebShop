@@ -39,5 +39,10 @@ namespace WebShopForm.Business
         {
             return persistenceCode.GetProduct(id);
         }
+
+        public List<Product> GetCart(User user)
+        {
+            return persistenceCode.GetCart(user);
+        }
     }
 }
