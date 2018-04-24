@@ -37,6 +37,26 @@ namespace WebShopForm.Persistence
             return productList;
         }
 
+        public void AddToCart(Product product, User user, int amount)
+        {
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "insert into tblcarts (ProductID, UserID, Amount) values('" + product.ID + "', '" + user.ID + "', '" + amount + "')";
+            var command = new MySqlCommand(querryStr, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        internal int GetStock(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveFromCart(Product product, User user)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Product> GetCart(User user)
         {
             var productList = new List<Product>();

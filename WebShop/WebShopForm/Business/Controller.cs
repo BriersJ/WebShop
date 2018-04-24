@@ -47,12 +47,17 @@ namespace WebShopForm.Business
 
         public void AddToCart(Product product, User user, int amount)
         {
-            throw new NotImplementedException();
+            persistenceCode.AddToCart(product, user, amount);
         }
 
         public void RemoveFromCart(Product product, User user)
         {
-            throw new NotImplementedException();
+            persistenceCode.RemoveFromCart(product, user);
+        }
+
+        public int GetStock(int id)
+        {
+            return persistenceCode.GetStock(id);
         }
     }
 }

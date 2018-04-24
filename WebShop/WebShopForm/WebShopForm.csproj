@@ -81,6 +81,7 @@
     <Content Include="Images\MS400.jpg" />
     <Content Include="Images\Test2.jpg" />
     <Content Include="Images\Test1.jpg" />
+    <Content Include="ItemToevoegen.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -88,6 +89,13 @@
     <Compile Include="Business\Controller.cs" />
     <Compile Include="Business\Product.cs" />
     <Compile Include="Business\User.cs" />
+    <Compile Include="ItemToevoegen.aspx.cs">
+      <DependentUpon>ItemToevoegen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemToevoegen.aspx.designer.cs">
+      <DependentUpon>ItemToevoegen.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\PersistenceCode.cs" />
     <Compile Include="Products.aspx.cs">
       <DependentUpon>Products.aspx</DependentUpon>

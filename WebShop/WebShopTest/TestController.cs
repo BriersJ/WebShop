@@ -136,6 +136,19 @@ namespace WebShopTest
         }
 
         [TestMethod]
+        public void SetStock_Amount_ChangedStock()
+        {
+
+        }
+
+        [TestMethod]
+        public void GetStock_Test1Id_Test1Stock()
+        {
+            int result = controller.GetStock(1);
+            Assert.AreEqual(60, result);
+        }
+
+        [TestMethod]
         public void ClearCart_User_EmptyCart()
         {
             throw new NotImplementedException();

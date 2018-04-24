@@ -37,7 +37,9 @@ namespace WebShopForm
 
         protected void GVMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string id = GVMain.SelectedRow.Cells[0].Text;
+            Session["ProductID"] = id;
+            Response.Redirect("ItemToevoegen.aspx");
         }
     }
 }
