@@ -76,6 +76,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\MD300.jpg" />
+    <Content Include="Images\MM100.jpg" />
+    <Content Include="Images\MS400.jpg" />
+    <Content Include="Images\Test2.jpg" />
+    <Content Include="Images\Test1.jpg" />
+    <Content Include="Products.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -83,11 +89,16 @@
     <Compile Include="Business\Product.cs" />
     <Compile Include="Business\User.cs" />
     <Compile Include="Persistence\PersistenceCode.cs" />
+    <Compile Include="Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
