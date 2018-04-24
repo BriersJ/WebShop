@@ -59,5 +59,10 @@ namespace WebShopForm.Business
         {
             return persistenceCode.GetStock(id);
         }
+
+        public void SetStock(int id, int amount)
+        {
+            persistenceCode.SetStock(id, amount);
+        }
     }
 }

@@ -47,9 +47,30 @@ namespace WebShopForm.Persistence
             connection.Close();
         }
 
-        internal int GetStock(int id)
+        public void SetStock(int id, int amount)
         {
-            throw new NotImplementedException();
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "update tblproducts set Stock = " + amount + " where id = " + id;
+            var command = new MySqlCommand(querryStr, connection);
+            var querryOutput = command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public int GetStock(int id)
+        {
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "select * from tblproducts where id = " + id;
+            var command = new MySqlCommand(querryStr, connection);
+            var querryOutput = command.ExecuteReader();
+            if (!querryOutput.Read())
+                throw new Exception("Product with id " + id + " does not exist");
+
+            int stock = Convert.ToInt32(querryOutput["Stock"]);
+
+            connection.Close();
+            return stock;
         }
 
         public void RemoveFromCart(Product product, User user)

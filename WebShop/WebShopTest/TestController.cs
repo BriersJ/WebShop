@@ -103,12 +103,13 @@ namespace WebShopTest
         {
             User user = controller.GetUser(2);
             List<Product> productlist = controller.GetCart(user);
-            Product product = productlist[0];
+            Product product = productlist[1];
             Assert.AreEqual(product.ID, 2);
             Assert.AreEqual(product.Name, "Test2");
             Assert.AreEqual(product.Picture, "Test2.jpg");
             Assert.AreEqual(product.Stock, 125);
             Assert.AreEqual(product.Price, 40.99);
+            Assert.AreEqual(product.AmountOrdered, 60);
         }
 
         [TestMethod]
@@ -138,7 +139,13 @@ namespace WebShopTest
         [TestMethod]
         public void SetStock_Amount_ChangedStock()
         {
+            controller.SetStock(1, 80);
+            int result = controller.GetStock(1);
+            Assert.AreEqual(80, result);
 
+            controller.SetStock(1, 60);
+            result = controller.GetStock(1);
+            Assert.AreEqual(60, result);
         }
 
         [TestMethod]
