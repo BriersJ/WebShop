@@ -10,7 +10,7 @@
 namespace WebShopForm {
     
     
-    public partial class Products {
+    public partial class Cart {
         
         /// <summary>
         /// form1 control.
@@ -22,21 +22,21 @@ namespace WebShopForm {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// GVMain control.
+        /// GVCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVMain;
+        protected global::System.Web.UI.WebControls.GridView GVCart;
         
         /// <summary>
-        /// Cart control.
+        /// Back control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Cart;
+        protected global::System.Web.UI.WebControls.Button Back;
     }
 }

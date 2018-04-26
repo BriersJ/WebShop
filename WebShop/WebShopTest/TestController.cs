@@ -173,5 +173,21 @@ namespace WebShopTest
             int result = controller.GetItemsInCart(2, 2);
             Assert.AreEqual(60, result);
         }
+
+        [TestMethod]
+        public void HasItemInCart_User1Item1_False()
+        {
+            User user = controller.GetUser(1);
+            Product product = controller.GetProduct(1);
+            Assert.IsFalse(controller.HasItemInCart(user, product));
+        }
+
+        [TestMethod]
+        public void HasItemInCart_User2Item2_True()
+        {
+            User user = controller.GetUser(2);
+            Product product = controller.GetProduct(2);
+            Assert.IsTrue(controller.HasItemInCart(user, product));
+        }
     }
 }

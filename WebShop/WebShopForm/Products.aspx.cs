@@ -30,7 +30,7 @@ namespace WebShopForm
                 if(stock <=0)
                 {
                     row.Cells[5].Enabled = false;
-                    row.Cells[5].Text = "Niet op voorraad";
+                    row.Cells[5].Text = "Out of stock";
                 }
             }
         }
@@ -39,7 +39,16 @@ namespace WebShopForm
         {
             string id = GVMain.SelectedRow.Cells[0].Text;
             Session["ProductID"] = id;
-            Response.Redirect("ItemToevoegen.aspx");
+            Response.Redirect("AddItem.aspx");
+        }
+
+        protected void Cart_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Cart.aspx");
+        }
+
+        protected void GVMain_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
         }
     }
 }

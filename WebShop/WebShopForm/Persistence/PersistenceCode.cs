@@ -48,7 +48,7 @@ namespace WebShopForm.Persistence
             connection.Close();
         }
 
-        internal int GetItemsInCart(int userID, int productID)
+        public int GetItemsInCart(int userID, int productID)
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
@@ -64,7 +64,19 @@ namespace WebShopForm.Persistence
             return stock;
         }
 
-        internal void ClearCart(User user)
+        public bool HasItemInCart(User user, Product product)
+        {
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "select * from tblcarts where userid = " + user.ID+ " and productid = " + product.ID;
+            var command = new MySqlCommand(querryStr, connection);
+            var querryOutput = command.ExecuteReader();
+            bool userExists = querryOutput.HasRows;
+            connection.Close();
+            return userExists;
+        }
+
+        public void ClearCart(User user)
         {
             List<Product> products = GetCart(user);
             foreach (Product product in products)

@@ -17,6 +17,11 @@ namespace WebShopForm.Business
             get { return id; }
         }
 
+        public double TotalPrice
+        {
+            get { return amountOrdered * price; }
+        }
+
         public int AmountOrdered
         {
             set { amountOrdered = value; }

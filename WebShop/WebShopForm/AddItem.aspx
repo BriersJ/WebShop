@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ItemToevoegen.aspx.cs" Inherits="WebShopForm.ItemToevoegen" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddItem.aspx.cs" Inherits="WebShopForm.ItemToevoegen" %>
 
 <!DOCTYPE html>
 
@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h1>ONLINE GITAARSHOP - Item toevoegen</h1>
+            <h1>Guitarshop</h1>
         </div>
         <table class="auto-style1">
             <tr>
@@ -24,25 +24,25 @@
                 <td>
                     <table class="auto-style1">
                         <tr>
-                            <td>ArtNr:</td>
+                            <td>Product ID:</td>
                             <td>
                                 <asp:Label ID="ProductID" runat="server"></asp:Label>
                             </td>
                         </tr>
                         <tr>
-                            <td>Naam:</td>
+                            <td>Name:</td>
                             <td>
                                 <asp:Label ID="Name" runat="server"></asp:Label>
                             </td>
                         </tr>
                         <tr>
-                            <td>Verkoopprijs:</td>
+                            <td>Price:</td>
                             <td>
                                 <asp:Label ID="Price" runat="server"></asp:Label>
                             </td>
                         </tr>
                         <tr>
-                            <td>Voorraad:</td>
+                            <td>Stock:</td>
                             <td>
                                 <asp:Label ID="Stock" runat="server"></asp:Label>
                             </td>
@@ -52,7 +52,13 @@
             </tr>
         </table>
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Terug naar hoofdpagina..." />
+        <asp:TextBox ID="TXTAmount" runat="server"></asp:TextBox>
+        <br />
+        <br />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Comfirm" />
+        <br />
+        <br />
+        <asp:Label ID="LBLError" runat="server" ForeColor="Red"></asp:Label>
     </form>
 </body>
 </html>

@@ -74,5 +74,10 @@ namespace WebShopForm.Business
         {
             persistenceCode.ClearCart(user);
         }
+
+        public bool HasItemInCart(User user, Product product)
+        {
+            return persistenceCode.HasItemInCart(user, product);
+        }
     }
 }
