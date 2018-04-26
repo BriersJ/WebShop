@@ -95,7 +95,7 @@ namespace WebShopTest
         {
             User user = controller.GetUser(1);
             List<Product> productlist = controller.GetCart(user);
-            Assert.AreEqual(0, productlist.Capacity);
+            Assert.AreEqual(0, productlist.Count);
         }
 
         [TestMethod]
@@ -115,7 +115,7 @@ namespace WebShopTest
         [TestMethod]
         public void AddToCartAndRemoveFromCArt_User_ChangedCart()
         {
-            User user = controller.GetUser(2);
+            User user = controller.GetUser(1);
             Product product = controller.GetProduct(1);
             int stock = product.Stock;
 
@@ -124,15 +124,13 @@ namespace WebShopTest
             List<Product> productlist = controller.GetCart(user);
             Product firstProduct = productlist[0];
             Assert.AreEqual(product.ID, 1);
-            Assert.AreEqual(2, productlist.Capacity);
+            Assert.AreEqual(1, productlist.Count);
             Assert.AreEqual(stock - 20, controller.GetProduct(1).Stock); // Check if there qre now 20 less avaidable of this product
 
-            //Remove the user's cart
+            //Remove from the user's cart
             controller.RemoveFromCart(product, user);
             productlist = controller.GetCart(user);
-            firstProduct = productlist[0];
-            Assert.AreEqual(product.ID, 2);
-            Assert.AreEqual(1, productlist.Capacity);
+            Assert.AreEqual(0, productlist.Count);
             Assert.AreEqual(stock, controller.GetProduct(1).Stock); // Check if the products are avaidable again
         }
 
@@ -158,7 +156,22 @@ namespace WebShopTest
         [TestMethod]
         public void ClearCart_User_EmptyCart()
         {
-            throw new NotImplementedException();
+            User user = controller.GetUser(1);
+            Product product = controller.GetProduct(1);
+            controller.AddToCart(product, user, 30);
+            List<Product> cart = controller.GetCart(user);
+            Assert.AreEqual(30, cart[0].AmountOrdered);
+            controller.ClearCart(user);
+            cart = controller.GetCart(user);
+            Assert.AreEqual(0, cart.Count);
+            Assert.AreEqual(60, controller.GetProduct(1).Stock);
+        }
+
+        [TestMethod]
+        public void GetItemsInCart_User2Product1_60()
+        {
+            int result = controller.GetItemsInCart(2, 2);
+            Assert.AreEqual(60, result);
         }
     }
 }

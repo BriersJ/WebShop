@@ -44,7 +44,33 @@ namespace WebShopForm.Persistence
             string querryStr = "insert into tblcarts (ProductID, UserID, Amount) values('" + product.ID + "', '" + user.ID + "', '" + amount + "')";
             var command = new MySqlCommand(querryStr, connection);
             command.ExecuteNonQuery();
+            SetStock(product.ID, GetStock(product.ID) - amount);
             connection.Close();
+        }
+
+        internal int GetItemsInCart(int userID, int productID)
+        {
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "select * from tblcarts where userid = " + userID + " and productid = " + productID;
+            var command = new MySqlCommand(querryStr, connection);
+            var querryOutput = command.ExecuteReader();
+            if (!querryOutput.Read())
+                throw new Exception("Cart with userID " + userID + " and productID " + productID + " does not exist");
+
+            int stock = Convert.ToInt32(querryOutput["Amount"]);
+
+            connection.Close();
+            return stock;
+        }
+
+        internal void ClearCart(User user)
+        {
+            List<Product> products = GetCart(user);
+            foreach (Product product in products)
+            {
+                RemoveFromCart(product, user);
+            }
         }
 
         public void SetStock(int id, int amount)
@@ -75,8 +101,17 @@ namespace WebShopForm.Persistence
 
         public void RemoveFromCart(Product product, User user)
         {
-            throw new NotImplementedException();
+            int amount = GetItemsInCart(user.ID, product.ID);
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "delete from tblcarts where productid = " + product.ID + " and userid = " + user.ID;
+            var command = new MySqlCommand(querryStr, connection);
+            command.ExecuteNonQuery();
+            SetStock(product.ID, GetStock(product.ID) + amount);
+            connection.Close();
         }
+
+
 
         public List<Product> GetCart(User user)
         {

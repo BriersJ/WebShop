@@ -64,5 +64,15 @@ namespace WebShopForm.Business
         {
             persistenceCode.SetStock(id, amount);
         }
+
+        public int GetItemsInCart(int userID, int productID)
+        {
+            return persistenceCode.GetItemsInCart(userID, productID);
+        }
+
+        public void ClearCart(User user)
+        {
+            persistenceCode.ClearCart(user);
+        }
     }
 }
