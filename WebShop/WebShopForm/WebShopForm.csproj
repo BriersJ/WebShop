@@ -83,6 +83,7 @@
     <Content Include="Images\Test2.jpg" />
     <Content Include="Images\Test1.jpg" />
     <Content Include="AddItem.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="Products.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -103,6 +104,13 @@
     </Compile>
     <Compile Include="AddItem.aspx.designer.cs">
       <DependentUpon>AddItem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Persistence\PersistenceCode.cs" />
     <Compile Include="Products.aspx.cs">
