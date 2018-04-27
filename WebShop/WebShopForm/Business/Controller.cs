@@ -79,5 +79,35 @@ namespace WebShopForm.Business
         {
             return persistenceCode.HasItemInCart(user, product);
         }
+
+        public double GetTotalPrice(List<Product> productList)
+        {
+            double price = 0;
+            foreach (Product p in productList)
+            {
+                price += p.TotalPrice;
+            }
+            return Math.Round(price, 2);
+        }
+
+        public double GetTotalPriceWithBTW(List<Product> productList)
+        {
+            double price = 0;
+            foreach (Product p in productList)
+            {
+                price += p.TotalPrice;
+            }
+            return Math.Round(price * 1.21, 2);
+        }
+
+        public double GetBTW(List<Product> productList)
+        {
+            double price = 0;
+            foreach (Product p in productList)
+            {
+                price += p.TotalPrice;
+            }
+            return Math.Round(price * 0.21, 2);
+        }
     }
 }

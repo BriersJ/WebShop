@@ -68,7 +68,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblcarts where userid = " + user.ID+ " and productid = " + product.ID;
+            string querryStr = "select * from tblcarts where userid = " + user.ID + " and productid = " + product.ID;
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             bool userExists = querryOutput.HasRows;
@@ -83,6 +83,57 @@ namespace WebShopForm.Persistence
             {
                 RemoveFromCart(product, user);
             }
+        }
+
+        public void MakeOrder(User user)
+        {
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "insert into tblorders (userid, date) values (" + user.ID + ", now())";
+            var command = new MySqlCommand(querryStr, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public int GetLastOrder()
+        {
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "select max(id) as lastid from tblorders";
+            var command = new MySqlCommand(querryStr, connection);
+            var querryOutput = command.ExecuteReader();
+            if (!querryOutput.Read())
+                throw new Exception("There are no orders");
+            int id = Convert.ToInt32(querryOutput["lastid"]);
+            connection.Close();
+            return id;
+        }
+
+        public void DoOrder(User user)
+        {
+            List<Product> cart = GetCart(user);
+            MakeOrder(user);
+            int orderId = GetLastOrder();
+            foreach(Product product in cart)
+            {
+                AddToOrder(orderId, product);
+                RemoveFromCart_NoReturnItems(product, user);
+            }
+        }
+
+        public void AddToOrder(int orderId, Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveFromCart_NoReturnItems(Product product, User user)
+        {
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "delete from tblcarts where productid = " + product.ID + " and userid = " + user.ID;
+            var command = new MySqlCommand(querryStr, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         public void SetStock(int id, int amount)

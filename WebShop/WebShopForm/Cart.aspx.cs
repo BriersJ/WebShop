@@ -19,19 +19,42 @@ namespace WebShopForm
 
         protected void GVCart_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            int id = Convert.ToInt32(Context.User.Identity.Name);
             int index = e.RowIndex;
             int productID = Convert.ToInt32(GVCart.Rows[index].Cells[0].Text);
             Product product = controller.GetProduct(productID);
-            User user = controller.GetUser(3);
+            User user = controller.GetUser(id);
             controller.RemoveFromCart(product, user);
             Response.Redirect("Cart.aspx");
         }
 
         private void UpdateGridView()
         {
-            User user = controller.GetUser(3);
-            GVCart.DataSource = controller.GetCart(user);
+            int id = Convert.ToInt32(Context.User.Identity.Name);
+            User user = controller.GetUser(id);
+            var productList = controller.GetCart(user);
+
+            if (productList.Count == 0)
+                ClearUnusedLabels();
+            else
+                FillGridView(productList);
+        }
+
+        private void FillGridView(List<Product> productList)
+        {
+            GVCart.DataSource = productList;
             GVCart.DataBind();
+            LBLPriceNoBTW.Text = controller.GetTotalPrice(productList).ToString();
+            LBLBTW.Text = controller.GetBTW(productList).ToString();
+            LBLPriceWithBTW.Text = controller.GetTotalPriceWithBTW(productList).ToString();
+        }
+
+        private void ClearUnusedLabels()
+        {
+            LBL1.Text = "";
+            LBL2.Text = "";
+            LBL3.Text = "";
+            LBLError.Text = "There are no items in your cart.";
         }
 
         protected void Back_Click(object sender, EventArgs e)

@@ -25,9 +25,10 @@ namespace WebShopForm
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            User user = controller.GetUser(3);
-            int id = Convert.ToInt32(Session["ProductID"]);
-            Product product = controller.GetProduct(id);
+            int userId = Convert.ToInt32(Context.User.Identity.Name);
+            User user = controller.GetUser(userId);
+            int productId = Convert.ToInt32(Session["ProductID"]);
+            Product product = controller.GetProduct(productId);
             if (controller.HasItemInCart(user, product))
             {
                 LBLError.Text = "You already have this item in your cart, to add a different amount please remove this product from your cart first";
@@ -37,7 +38,7 @@ namespace WebShopForm
                 int amount;
                 if (int.TryParse(TXTAmount.Text, out amount))
                 {
-                    int currentStock = controller.GetStock(id);
+                    int currentStock = controller.GetStock(productId);
                     if (amount <= currentStock)
                     {
                         controller.AddToCart(product, user, amount);

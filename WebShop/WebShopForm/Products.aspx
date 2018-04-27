@@ -20,7 +20,7 @@
                     </asp:ImageField>
                     <asp:BoundField DataField="Price" HeaderText="Price" />
                     <asp:BoundField DataField="Stock" HeaderText="Stock" />
-                    <asp:CommandField SelectText="Voeg toe aan winkelmandje..." ShowSelectButton="True" />
+                    <asp:CommandField SelectText="Add to cart..." ShowSelectButton="True" />
                 </Columns>
             </asp:GridView>
         </div>
