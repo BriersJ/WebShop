@@ -109,21 +109,27 @@ namespace WebShopForm.Persistence
             return id;
         }
 
-        public void DoOrder(User user)
+        public int DoOrder(User user)
         {
             List<Product> cart = GetCart(user);
             MakeOrder(user);
             int orderId = GetLastOrder();
-            foreach(Product product in cart)
+            foreach (Product product in cart)
             {
                 AddToOrder(orderId, product);
                 RemoveFromCart_NoReturnItems(product, user);
             }
+            return orderId;
         }
 
         public void AddToOrder(int orderId, Product product)
         {
-            throw new NotImplementedException();
+            var connection = new MySqlConnection(connStr);
+            connection.Open();
+            string querryStr = "insert into tblproductsorder (productid, orderid, price, amount) values (" + product.ID + "," + orderId + "," + product.Price.ToString().Replace(',','.') + "," + product.AmountOrdered + ")";
+            var command = new MySqlCommand(querryStr, connection);
+            command.ExecuteNonQuery();
+            connection.Close();
         }
 
         public void RemoveFromCart_NoReturnItems(Product product, User user)

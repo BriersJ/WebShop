@@ -109,5 +109,16 @@ namespace WebShopForm.Business
             }
             return Math.Round(price * 0.21, 2);
         }
+
+        public int DoOrder(User user)
+        {
+            return persistenceCode.DoOrder(user);
+        }
+
+        public void SendConfirmationMail(User user, int orderId, double totalPrice)
+        {
+            MailSender mailSender = new MailSender();
+            mailSender.SendMail(user, orderId, totalPrice);
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace WebShopForm
     public partial class Cart : System.Web.UI.Page
     {
         Controller controller = new Controller();
+        private bool hasItemsInCart = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +35,8 @@ namespace WebShopForm
             User user = controller.GetUser(id);
             var productList = controller.GetCart(user);
 
-            if (productList.Count == 0)
+            hasItemsInCart = productList.Count != 0;
+            if (!hasItemsInCart)
                 ClearUnusedLabels();
             else
                 FillGridView(productList);
@@ -51,6 +53,7 @@ namespace WebShopForm
 
         private void ClearUnusedLabels()
         {
+            Order.Enabled = false;
             LBL1.Text = "";
             LBL2.Text = "";
             LBL3.Text = "";
@@ -60,6 +63,11 @@ namespace WebShopForm
         protected void Back_Click(object sender, EventArgs e)
         {
             Response.Redirect("Products.aspx");
+        }
+
+        protected void Order_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Order.aspx");
         }
     }
 }

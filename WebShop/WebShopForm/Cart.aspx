@@ -10,7 +10,13 @@
             width: 700px;
         }
         .auto-style2 {
-            width: 422px;
+            width: 400px;
+        }
+        .auto-style3 {
+            width: 700px;
+        }
+        .auto-style4 {
+            width: 400px;
         }
     </style>
 </head>
@@ -53,7 +59,17 @@
             <asp:Label ID="LBLError" runat="server"></asp:Label>
             <br />
             <br />
+            <table class="auto-style3">
+                <tr>
+                    <td class="auto-style4">
             <asp:Button ID="Back" runat="server" OnClick="Back_Click" Text="Back to products overvieuw" />
+                    </td>
+                    <td>
+                        <asp:Button ID="Order" runat="server" Text="Order" OnClick="Order_Click" />
+                    </td>
+                </tr>
+            </table>
+            <br />
         </div>
     </form>
 </body>
