@@ -126,7 +126,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "insert into tblproductsorder (productid, orderid, price, amount) values (" + product.ID + "," + orderId + "," + product.Price.ToString().Replace(',','.') + "," + product.AmountOrdered + ")";
+            string querryStr = "insert into tblproductsorder (productid, orderid, price, amount) values (" + product.ID + "," + orderId + "," + product.Price.ToString().Replace(',', '.') + "," + product.AmountOrdered + ")";
             var command = new MySqlCommand(querryStr, connection);
             command.ExecuteNonQuery();
             connection.Close();
@@ -238,7 +238,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblusers where loginname = '" + loginName + "' and binary password = '" + password + "'";
+            string querryStr = "select * from tblusers where loginname = '" + loginName + "' and binary password = '" + Hasher.HashOf(password) + "'";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             bool credentialsAreCorrect = querryOutput.HasRows;

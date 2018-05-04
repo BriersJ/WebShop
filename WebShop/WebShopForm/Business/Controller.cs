@@ -17,7 +17,7 @@ namespace WebShopForm.Business
 
         public bool Login(string loginName, string password)
         {
-            return persistenceCode.Login(loginName, password);
+            return persistenceCode.Login(loginName,password);
         }
 
         public bool UserExists(string loginName)

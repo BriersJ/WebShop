@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\Controller.cs" />
+    <Compile Include="Business\Hasher.cs" />
     <Compile Include="Business\MailSender.cs" />
     <Compile Include="Business\Product.cs" />
     <Compile Include="Business\User.cs" />
