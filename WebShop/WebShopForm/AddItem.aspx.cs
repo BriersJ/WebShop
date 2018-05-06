@@ -39,7 +39,11 @@ namespace WebShopForm
                 if (int.TryParse(TXTAmount.Text, out amount))
                 {
                     int currentStock = controller.GetStock(productId);
-                    if (amount <= currentStock)
+                    if(amount <= 0)
+                    {
+                        LBLError.Text = "Please enter a positive number.";
+                    }
+                    else if (amount <= currentStock)
                     {
                         controller.AddToCart(product, user, amount);
                         Response.Redirect("Products.aspx");

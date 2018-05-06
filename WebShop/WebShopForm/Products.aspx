@@ -4,28 +4,43 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+<link href="style.css" type="text/css" rel="stylesheet" />
+    <title>Products overview</title>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <h1>Guitarshop<br />
-            </h1>
-            <asp:GridView ID="GVMain" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GVMain_SelectedIndexChanged" OnRowDeleting="GVMain_RowDeleting">
-                <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="ID" />
-                    <asp:BoundField DataField="Name" HeaderText="Name" />
-                    <asp:ImageField DataImageUrlField="Picture" DataImageUrlFormatString="~\Images\{0}" HeaderText="Picture">
-                        <ControlStyle Height="150px" Width="150px" />
-                    </asp:ImageField>
-                    <asp:BoundField DataField="Price" HeaderText="Price" />
-                    <asp:BoundField DataField="Stock" HeaderText="Stock" />
-                    <asp:CommandField SelectText="Add to cart..." ShowSelectButton="True" />
-                </Columns>
-            </asp:GridView>
+        <div class="main">
+            <div class="header">
+                <img src="Images\Banner.png" />
+            </div>
+            <div class="menu">
+                <ul class="menu-list">
+                    <li><a class="active" href="index.html">Products overview</a></li>
+                    <li><a href="Cart.aspx">Cart</a></li>
+                    <li><a href="Logout.aspx">Logout</a></li>
+                </ul>
+            </div>
+            <div class="content">
+                <h1>Guitarshop<br />
+                </h1>
+                <asp:GridView ID="GVMain" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GVMain_SelectedIndexChanged" OnRowDeleting="GVMain_RowDeleting" CssClass="grid">
+                    <Columns>
+                        <asp:BoundField DataField="ID" HeaderText="ID" />
+                        <asp:BoundField DataField="Name" HeaderText="Name" />
+                        <asp:ImageField DataImageUrlField="Picture" DataImageUrlFormatString="~\Images\{0}" HeaderText="Picture">
+                            <ControlStyle CssClass="product-image" />
+                        </asp:ImageField>
+                        <asp:BoundField DataField="Price" HeaderText="Price" />
+                        <asp:BoundField DataField="Stock" HeaderText="Stock" />
+                        <asp:CommandField SelectText="Add to cart..." ShowSelectButton="True" />
+                    </Columns>
+                </asp:GridView>
+
+            </div>
+            <asp:Button ID="Cart" runat="server" OnClick="Cart_Click" Text="Go to cart" />
+            <footer>
+            </footer>
         </div>
-        <br />
-        <asp:Button ID="Cart" runat="server" OnClick="Cart_Click" Text="Go to cart" />
     </form>
 </body>
 </html>

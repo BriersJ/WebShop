@@ -1,0 +1,116 @@
+﻿body {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    background-color: #455A64;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.main {
+    min-height: 100%;
+    position: relative;
+    width: 1200px;
+    margin: auto;
+}
+
+.loginbox-main {
+    height: 250px;
+    position: relative;
+    width: 300px;
+    margin: auto;
+}
+
+.grid {
+}
+
+    .grid td, .grid th {
+        border: 1px solid #BDBDBD;
+        padding: 8px;
+    }
+
+    .grid tr:nth-child(even) {
+        background-color: #607D8B;
+    }
+
+    .grid th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #455A64;
+        color: white;
+    }
+
+
+.loginbox-box {
+    top: 50px;
+    padding-left: 10px;
+    left: auto;
+    height: auto;
+    position: absolute;
+    width: 300px;
+    margin: auto;
+    background-color: #CFD8DC;
+    border: 1px solid #212121;
+    border-radius: 5px;
+}
+
+.header {
+    background-color: #3b3a36;
+    margin: 0;
+    padding: 0;
+    height: 200px;
+}
+
+    .header img {
+        width: 1200px;
+        height: 200px;
+    }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #607D8B;
+}
+
+.product-image {
+    Height: 150px;
+    Width: 150px;
+}
+
+.content {
+    background-color: #CFD8DC;
+    padding: 40px;
+    padding-bottom: 120px;
+}
+
+ul.menu-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #607D8B;
+}
+
+li p {
+    font-size: 20px;
+}
+
+
+li a {
+    float: left;
+    display: block;
+    color: #e9ece5;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+    li a:hover:not(.active) {
+        background-color: #757575;
+    }
+
+.active {
+    background-color: #FF5722;
+}
