@@ -4,12 +4,18 @@ using System.Linq;
 using System.Web;
 using WebShopForm.Business;
 using MySql.Data.MySqlClient;
+using System.Net;
 
 namespace WebShopForm.Persistence
 {
     public class PersistenceCode
     {
-        string connStr = "server=localhost;database=dbshop;password=Test123;user id=root";
+        string connStr = "database=dbshop;password=Test123;user id=nillo_taak;SSL Mode=none;server=";
+
+        public PersistenceCode()
+        {
+            connStr += Dns.GetHostAddresses("nillo.duckdns.org")[0];
+        }
 
         public List<Product> GetProducts()
         {
