@@ -39,6 +39,7 @@
             </div>
             <asp:Button ID="Cart" runat="server" OnClick="Cart_Click" Text="Go to cart" />
             <footer>
+                <a href="mailto:webshopjonas@gmail.com">Contact</a>
             </footer>
         </div>
     </form>

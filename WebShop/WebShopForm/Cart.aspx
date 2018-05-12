@@ -71,6 +71,7 @@
                 <asp:Button ID="Order" runat="server" Text="Order" OnClick="Order_Click" />
             </div>
             <footer>
+                <a href="mailto:webshopjonas@gmail.com">Contact</a>
             </footer>
         </div>
     </form>

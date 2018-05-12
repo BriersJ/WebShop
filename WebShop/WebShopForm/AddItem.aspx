@@ -71,6 +71,7 @@
                 <asp:Label ID="LBLError" runat="server" ForeColor="Red"></asp:Label>
             </div>
             <footer>
+                <a href="mailto:webshopjonas@gmail.com">Contact</a>
             </footer>
         </div>
     </form>

@@ -11,16 +11,16 @@ namespace WebShopForm.Business
     {
         public void SendMail(User user, int orderId, double totalPrice)
         {
-            //try
-            //{
-            var client = MakeSMTP();
-            var message = MakeMessage(user, orderId, totalPrice);
-            client.Send(message);
-            //}
-            //catch
-            //{
+            try
+            {
+                var client = MakeSMTP();
+                var message = MakeMessage(user, orderId, totalPrice);
+                client.Send(message);
+            }
+            catch
+            {
 
-            //}
+            }
         }
 
         private MailMessage MakeMessage(User user, int orderId, double totalPrice)

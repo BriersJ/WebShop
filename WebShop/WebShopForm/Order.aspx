@@ -40,7 +40,7 @@
             </div>
             
             <footer>
-
+                <a href="mailto:webshopjonas@gmail.com">Contact</a>
             </footer>
         </div>
     </form>

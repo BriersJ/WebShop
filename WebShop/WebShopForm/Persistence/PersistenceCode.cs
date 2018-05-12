@@ -245,7 +245,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = $"select * from tblusers where loginname = '{ loginName }' and binary password = ' { Hasher.HashOf(password) }'";
+            string querryStr = $"select * from tblusers where loginname = '{ loginName }' and binary password = '{ Hasher.HashOf(password) }'";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             bool credentialsAreCorrect = querryOutput.HasRows;

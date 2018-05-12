@@ -72,7 +72,14 @@ footer {
     width: 100%;
     height: 60px;
     background-color: #607D8B;
+    display: table;
 }
+
+    footer a {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
 
 .product-image {
     Height: 150px;
