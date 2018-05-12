@@ -47,7 +47,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "insert into tblcarts (ProductID, UserID, Amount) values('" + product.ID + "', '" + user.ID + "', '" + amount + "')";
+            string querryStr = $"insert into tblcarts (ProductID, UserID, Amount) values('{ product.ID  }', '{ user.ID }', '{ amount }')";
             var command = new MySqlCommand(querryStr, connection);
             command.ExecuteNonQuery();
             SetStock(product.ID, GetStock(product.ID) - amount);
@@ -58,11 +58,11 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblcarts where userid = " + userID + " and productid = " + productID;
+            string querryStr = $"select * from tblcarts where userid = { userID } and productid = { productID }";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             if (!querryOutput.Read())
-                throw new Exception("Cart with userID " + userID + " and productID " + productID + " does not exist");
+                throw new Exception($"Cart with userID { userID } and productID { productID } does not exist");
 
             int stock = Convert.ToInt32(querryOutput["Amount"]);
 
@@ -74,7 +74,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblcarts where userid = " + user.ID + " and productid = " + product.ID;
+            string querryStr = $"select * from tblcarts where userid = { user.ID } and productid = { product.ID }";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             bool userExists = querryOutput.HasRows;
@@ -95,7 +95,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "insert into tblorders (userid, date) values (" + user.ID + ", now())";
+            string querryStr = $"insert into tblorders (userid, date) values ( { user.ID } , now())";
             var command = new MySqlCommand(querryStr, connection);
             command.ExecuteNonQuery();
             connection.Close();
@@ -132,7 +132,8 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "insert into tblproductsorder (productid, orderid, price, amount) values (" + product.ID + "," + orderId + "," + product.Price.ToString().Replace(',', '.') + "," + product.AmountOrdered + ")";
+            string priceStr = product.Price.ToString().Replace(',', '.');
+            string querryStr = $"insert into tblproductsorder (productid, orderid, price, amount) values ({ product.ID },{ orderId },{ priceStr },{ product.AmountOrdered })";
             var command = new MySqlCommand(querryStr, connection);
             command.ExecuteNonQuery();
             connection.Close();
@@ -142,7 +143,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "delete from tblcarts where productid = " + product.ID + " and userid = " + user.ID;
+            string querryStr = $"delete from tblcarts where productid = { product.ID } and userid = { user.ID }";
             var command = new MySqlCommand(querryStr, connection);
             command.ExecuteNonQuery();
             connection.Close();
@@ -152,7 +153,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "update tblproducts set Stock = " + amount + " where id = " + id;
+            string querryStr = $"update tblproducts set Stock = { amount } where id = { id }";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteNonQuery();
             connection.Close();
@@ -162,11 +163,11 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblproducts where id = " + id;
+            string querryStr = $"select * from tblproducts where id = { id }";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             if (!querryOutput.Read())
-                throw new Exception("Product with id " + id + " does not exist");
+                throw new Exception($"Product with id { id } does not exist");
 
             int stock = Convert.ToInt32(querryOutput["Stock"]);
 
@@ -179,7 +180,7 @@ namespace WebShopForm.Persistence
             int amount = GetItemsInCart(user.ID, product.ID);
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "delete from tblcarts where productid = " + product.ID + " and userid = " + user.ID;
+            string querryStr = $"delete from tblcarts where productid = { product.ID } and userid = { user.ID }";
             var command = new MySqlCommand(querryStr, connection);
             command.ExecuteNonQuery();
             SetStock(product.ID, GetStock(product.ID) + amount);
@@ -193,7 +194,7 @@ namespace WebShopForm.Persistence
             var productList = new List<Product>();
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblproducts inner join tblcarts on tblcarts.productid = tblproducts.id where userid = " + user.ID;
+            string querryStr = $"select * from tblproducts inner join tblcarts on tblcarts.productid = tblproducts.id where userid = { user.ID }";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             while (querryOutput.Read())
@@ -219,11 +220,11 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblproducts where id = " + id;
+            string querryStr = $"select * from tblproducts where id = { id }";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             if (!querryOutput.Read())
-                throw new Exception("Product with id " + id + " does not exist");
+                throw new Exception($"Product with id { id } does not exist");
 
             var product = new Product()
             {
@@ -244,7 +245,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblusers where loginname = '" + loginName + "' and binary password = '" + Hasher.HashOf(password) + "'";
+            string querryStr = $"select * from tblusers where loginname = '{ loginName }' and binary password = ' { Hasher.HashOf(password) }'";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             bool credentialsAreCorrect = querryOutput.HasRows;
@@ -256,7 +257,7 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblusers where loginname = '" + loginName + "'";
+            string querryStr = $"select * from tblusers where loginname = '{ loginName }'";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             bool userExists = querryOutput.HasRows;
@@ -268,11 +269,11 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblusers where loginname = '" + loginName + "'";
+            string querryStr = $"select * from tblusers where loginname = '{ loginName }'";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             if (!querryOutput.Read())
-                throw new Exception("User " + loginName + " does not exist");
+                throw new Exception($"User { loginName } does not exist");
 
             var user = new User
             {
@@ -294,11 +295,11 @@ namespace WebShopForm.Persistence
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
-            string querryStr = "select * from tblusers where id = '" + userID + "'";
+            string querryStr = $"select * from tblusers where id = '{ userID }'";
             var command = new MySqlCommand(querryStr, connection);
             var querryOutput = command.ExecuteReader();
             if (!querryOutput.Read())
-                throw new Exception("User with id " + userID + " does not exist");
+                throw new Exception($"User with id { userID } does not exist");
 
             var user = new User
             {
