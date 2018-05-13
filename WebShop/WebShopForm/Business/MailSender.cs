@@ -37,9 +37,10 @@ namespace WebShopForm.Business
             var message = new MailMessage("webshopjonas@gmail.com", user.Email)
             {
                 Subject = "Order online guitar shop",
-                Body = "Your order with id " + totalPrice + " has been received successfully." +
-                            Environment.NewLine + "After a payment of " + totalPrice + " on Bitcoin adress[put butcoin address here] we will  continue the shipment of the products." +
-                            Environment.NewLine + "Thank you for yout trust!"
+                Body = "Your order with id " + orderId + " has been received successfully." +
+                            Environment.NewLine + "After a payment of " + totalPrice + " on bank account number BE91 5612 1236 7895 we will  continue the shipment of the products." +
+                            Environment.NewLine + "Please add your order id as a payment reference." +
+                            Environment.NewLine + "Thank you for your trust!"
             };
             return message;
         }

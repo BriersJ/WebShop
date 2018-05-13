@@ -32,10 +32,12 @@
                     After a payment of
                
                     <asp:Label ID="LBLPrice" runat="server"></asp:Label>
-                    &nbsp;on Bitcoin adress [put butcoin address here] we will&nbsp; continue the shipment of the products.
+                    &nbsp;on bank account number<strong> BE91 5612 1236 7895 </strong>we will&nbsp; continue the shipment of the products.
                 </p>
                 <p>
-                    Thank you for yout trust!
+                    Please add your order id as a payment reference.</p>
+                <p>
+                    Thank you for your trust!
                 </p>
             </div>
             
