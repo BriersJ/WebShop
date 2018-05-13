@@ -62,6 +62,7 @@
                     </tr>
                 </table>
                 <br />
+                Amount to order:
                 <asp:TextBox ID="TXTAmount" runat="server"></asp:TextBox>
                 <br />
                 <br />
