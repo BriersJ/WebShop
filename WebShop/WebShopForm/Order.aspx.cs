@@ -8,10 +8,18 @@ using WebShopForm.Business;
 
 namespace WebShopForm
 {
+    /// <summary>
+    /// The code behind the webpage responsible for showing a user details of a placed order.
+    /// </summary>
     public partial class Order : System.Web.UI.Page
     {
         Controller controller = new Controller();
 
+        /// <summary>
+        /// Gets executed every time the page loads.
+        /// </summary>
+        /// <param name="sender">The object executing this method.</param>
+        /// <param name="e">Extra arguments</param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
@@ -25,12 +33,6 @@ namespace WebShopForm
             int orderId = controller.DoOrder(user);
             LBLId.Text = orderId.ToString();
             controller.SendConfirmationMail(user, orderId, price);
-        }
-        
-
-        protected void Back_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Products.aspx");
         }
     }
 }

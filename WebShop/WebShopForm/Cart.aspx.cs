@@ -8,16 +8,29 @@ using WebShopForm.Business;
 
 namespace WebShopForm
 {
+    /// <summary>
+    /// The code behind the webpage responsible fo showing <code>User</code>s their cart.
+    /// </summary>
     public partial class Cart : System.Web.UI.Page
     {
         Controller controller = new Controller();
         private bool hasItemsInCart = false;
 
+        /// <summary>
+        /// Gets executed every time the page loads.
+        /// </summary>
+        /// <param name="sender">The object executing this method.</param>
+        /// <param name="e">Extra arguments</param>
         protected void Page_Load(object sender, EventArgs e)
         {
             UpdateGridView();
         }
 
+        /// <summary>
+        /// Deletes an item from a <code>User</code>'s cart.
+        /// </summary>
+        /// <param name="sender">The object executing this method.</param>
+        /// <param name="e">Extra arguments</param>
         protected void GVCart_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int id = Convert.ToInt32(Context.User.Identity.Name);
@@ -58,16 +71,6 @@ namespace WebShopForm
             LBL2.Text = "";
             LBL3.Text = "";
             LBLError.Text = "There are no items in your cart.";
-        }
-
-        protected void Back_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Products.aspx");
-        }
-
-        protected void Order_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Order.aspx");
         }
     }
 }

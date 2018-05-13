@@ -65,7 +65,7 @@
                 <asp:TextBox ID="TXTAmount" runat="server"></asp:TextBox>
                 <br />
                 <br />
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Comfirm" />
+                <asp:Button ID="BTN_Confirm" runat="server" OnClick="Confirm_Click" Text="Confirm" />
                 <br />
                 <br />
                 <asp:Label ID="LBLError" runat="server" ForeColor="Red"></asp:Label>

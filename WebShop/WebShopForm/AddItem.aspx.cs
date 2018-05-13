@@ -8,10 +8,18 @@ using WebShopForm.Business;
 
 namespace WebShopForm
 {
+    /// <summary>
+    /// The code behind the webpage responsible for adding <code>Product</code>s to <code>User</code>s carts.
+    /// </summary>
     public partial class ItemToevoegen : System.Web.UI.Page
     {
         Controller controller = new Controller();
 
+        /// <summary>
+        /// Gets executed every time the page loads.
+        /// </summary>
+        /// <param name="sender">The object executing this method.</param>
+        /// <param name="e">Extra arguments</param>
         protected void Page_Load(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(Session["ProductID"]);
@@ -23,7 +31,12 @@ namespace WebShopForm
             Name.Text = product.Name;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Getx executed when a user clicks on the "add item"
+        /// </summary>
+        /// <param name="sender">The object executing this method.</param>
+        /// <param name="e">Extra arguments</param>
+        protected void Confirm_Click(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(Context.User.Identity.Name);
             User user = controller.GetUser(userId);

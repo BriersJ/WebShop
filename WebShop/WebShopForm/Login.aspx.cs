@@ -9,15 +9,28 @@ using WebShopForm.Business;
 
 namespace WebShopForm
 {
+    /// <summary>
+    /// The wabsite's login page.
+    /// </summary>
     public partial class Login : System.Web.UI.Page
     {
         Controller controller = new Controller();
-
+        
+        /// <summary>
+        /// Gets executed every time the page loads.
+        /// </summary>
+        /// <param name="sender">The object executing this method.</param>
+        /// <param name="e">Extra arguments</param>
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Tries to log in a user.
+        /// </summary>
+        /// <param name="sender">The object executing this method.</param>
+        /// <param name="e">Extra arguments</param>
         protected void BNTLogin_Click(object sender, EventArgs e)
         {
             if (controller.Login(TXTUser.Text, TXTPassword.Text))
