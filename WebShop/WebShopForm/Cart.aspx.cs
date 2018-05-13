@@ -72,5 +72,15 @@ namespace WebShopForm
             LBL3.Text = "";
             LBLError.Text = "There are no items in your cart.";
         }
+
+        /// <summary>
+        /// Confirms the order.
+        /// </summary>
+        /// <param name="sender">The object executing this method.</param>
+        /// <param name="e">Extra arguments</param>
+        protected void Order_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Order.aspx");
+        }
     }
 }

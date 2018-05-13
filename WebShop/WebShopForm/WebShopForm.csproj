@@ -80,13 +80,19 @@
   <ItemGroup>
     <Content Include="Cart.aspx" />
     <Content Include="Images\Banner.png" />
+    <Content Include="Images\Cart.png" />
     <Content Include="Images\Delete.png" />
+    <Content Include="Images\FG-651.jpg" />
+    <Content Include="Images\MD200.jpg" />
     <Content Include="Images\MD300.jpg" />
     <Content Include="Images\MM100.jpg" />
     <Content Include="Images\MS400.jpg" />
+    <Content Include="Images\RR100.jpg" />
     <Content Include="Images\Test2.jpg" />
     <Content Include="Images\Test1.jpg" />
     <Content Include="AddItem.aspx" />
+    <Content Include="Images\Warbeast.jpg" />
+    <Content Include="Images\Warlock.jpg" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="Order.aspx" />
