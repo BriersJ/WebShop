@@ -8,15 +8,25 @@ using System.Net;
 
 namespace WebShopForm.Persistence
 {
+    /// <summary>
+    /// This class is responsible for all communication to the database.
+    /// </summary>
     public class PersistenceCode
     {
         string connStr = "database=dbshop;password=Test123;user id=nillo_taak;SSL Mode=none;server=";
 
+        /// <summary>
+        /// Creates a new instance of the <code>PersistenceCode</code> class.
+        /// </summary>
         public PersistenceCode()
         {
             connStr += Dns.GetHostAddresses("nillo.duckdns.org")[0];
         }
 
+        /// <summary>
+        /// Gets a list of all products in the database.
+        /// </summary>
+        /// <returns>A list of all products</returns>
         public List<Product> GetProducts()
         {
             var productList = new List<Product>();
@@ -43,6 +53,12 @@ namespace WebShopForm.Persistence
             return productList;
         }
 
+        /// <summary>
+        /// Adds a <code>Product</code> to a <code>User</code>'s cart.
+        /// </summary>
+        /// <param name="product">The <code>Product</code> you want to add</param>
+        /// <param name="user">The matching <code>User</code></param>
+        /// <param name="amount">The amount that should be added</param>
         public void AddToCart(Product product, User user, int amount)
         {
             var connection = new MySqlConnection(connStr);
@@ -54,6 +70,12 @@ namespace WebShopForm.Persistence
             connection.Close();
         }
 
+        /// <summary>
+        /// Gets the amount of a certain <code>Product</code> from a certain <code>User</code>'s cart.
+        /// </summary>
+        /// <param name="userID">The <code>User</code>'s ID</param>
+        /// <param name="productID">The <code>Product</code>'s ID</param>
+        /// <returns>The amount the <code>User</code> has ordered of this <code>Product</code></returns>
         public int GetItemsInCart(int userID, int productID)
         {
             var connection = new MySqlConnection(connStr);
@@ -70,6 +92,12 @@ namespace WebShopForm.Persistence
             return stock;
         }
 
+        /// <summary>
+        /// Checks if a certain <code>User</code> has a certain <code>Product</code> in their cart.
+        /// </summary>
+        /// <param name="user">The <code>User</code> whose cart should be checked</param>
+        /// <param name="product">The <code>Product</code> that should be looked for</param>
+        /// <returns><code>true</code> if the <code>User</code> has this <code>Product</code> in their cart, <code>false</code> otherwise</returns>
         public bool HasItemInCart(User user, Product product)
         {
             var connection = new MySqlConnection(connStr);
@@ -82,6 +110,10 @@ namespace WebShopForm.Persistence
             return userExists;
         }
 
+        /// <summary>
+        /// Remover all items from a <code>User</code>'s cart.
+        /// </summary>
+        /// <param name="user">The <code>User</code> whose cart should be cleared</param>
         public void ClearCart(User user)
         {
             List<Product> products = GetCart(user);
@@ -91,7 +123,7 @@ namespace WebShopForm.Persistence
             }
         }
 
-        public void MakeOrder(User user)
+        private void MakeOrder(User user)
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
@@ -101,7 +133,7 @@ namespace WebShopForm.Persistence
             connection.Close();
         }
 
-        public int GetLastOrder()
+        private int GetLastOrder()
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
@@ -115,6 +147,11 @@ namespace WebShopForm.Persistence
             return id;
         }
 
+        /// <summary>
+        /// Place an order based on a certain <code>User</code>'s cart
+        /// </summary>
+        /// <param name="user">The <code>User</code> who places an order.</param>
+        /// <returns>The ID of the order</returns>
         public int DoOrder(User user)
         {
             List<Product> cart = GetCart(user);
@@ -128,7 +165,7 @@ namespace WebShopForm.Persistence
             return orderId;
         }
 
-        public void AddToOrder(int orderId, Product product)
+        private void AddToOrder(int orderId, Product product)
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
@@ -139,7 +176,7 @@ namespace WebShopForm.Persistence
             connection.Close();
         }
 
-        public void RemoveFromCart_NoReturnItems(Product product, User user)
+        private void RemoveFromCart_NoReturnItems(Product product, User user)
         {
             var connection = new MySqlConnection(connStr);
             connection.Open();
@@ -149,6 +186,11 @@ namespace WebShopForm.Persistence
             connection.Close();
         }
 
+        /// <summary>
+        /// Sets the stock of a certain <code>Product</code>
+        /// </summary>
+        /// <param name="id">The matching ID</param>
+        /// <param name="amount">The new stock</param>
         public void SetStock(int id, int amount)
         {
             var connection = new MySqlConnection(connStr);
@@ -159,6 +201,11 @@ namespace WebShopForm.Persistence
             connection.Close();
         }
 
+        /// <summary>
+        /// Gets the stock of a certain <code>Product</code>.
+        /// </summary>
+        /// <param name="id">The <code>Product</code>'s ID</param>
+        /// <returns>The stock of the product <code>Product</code></returns>
         public int GetStock(int id)
         {
             var connection = new MySqlConnection(connStr);
@@ -175,6 +222,11 @@ namespace WebShopForm.Persistence
             return stock;
         }
 
+        /// <summary>
+        /// Removes a certain <code>Product</code> from a <code>User</code>'s cart
+        /// </summary>
+        /// <param name="product">The <code>Product</code> you want to remove</param>
+        /// <param name="user">The matching <code>User</code> that</param>
         public void RemoveFromCart(Product product, User user)
         {
             int amount = GetItemsInCart(user.ID, product.ID);
@@ -187,8 +239,11 @@ namespace WebShopForm.Persistence
             connection.Close();
         }
 
-
-
+        /// <summary>
+        /// Gets a User's cart.
+        /// </summary>
+        /// <param name="user">The matching <code>User</code> object</param>
+        /// <returns>A list of products that are in the User's cart</returns>
         public List<Product> GetCart(User user)
         {
             var productList = new List<Product>();
@@ -216,6 +271,11 @@ namespace WebShopForm.Persistence
             return productList;
         }
 
+        /// <summary>
+        /// Gets a product based on it's ID.
+        /// </summary>
+        /// <param name="id">The product's ID</param>
+        /// <returns>The matching <code>Product</code> object</returns>
         public Product GetProduct(int id)
         {
             var connection = new MySqlConnection(connStr);
@@ -241,6 +301,12 @@ namespace WebShopForm.Persistence
             return product;
         }
 
+        /// <summary>
+        /// Checks if certain credentials are correct.
+        /// </summary>
+        /// <param name="loginName">The username to check</param>
+        /// <param name="password">The user's password (not the hash)</param>
+        /// <returns><code>true</code> if the credentials are correct, <code>false</code> otherwise</returns>
         public bool Login(string loginName, string password)
         {
             var connection = new MySqlConnection(connStr);
@@ -253,6 +319,11 @@ namespace WebShopForm.Persistence
             return credentialsAreCorrect;
         }
 
+        /// <summary>
+        /// Checks if a certain user exists in the database.
+        /// </summary>
+        /// <param name="loginName">The username to look for</param>
+        /// <returns><code>true</code> if the user exists, <code>false</code> otherwise</returns>
         public bool UserExists(string loginName)
         {
             var connection = new MySqlConnection(connStr);
@@ -265,6 +336,11 @@ namespace WebShopForm.Persistence
             return userExists;
         }
 
+        /// <summary>
+        /// Gets a certain user based on their username.
+        /// </summary>
+        /// <param name="loginName">The user's username</param>
+        /// <returns>The <code>User</code> object matching the username</returns>
         public User GetUser(string loginName)
         {
             var connection = new MySqlConnection(connStr);
@@ -291,6 +367,11 @@ namespace WebShopForm.Persistence
             return user;
         }
 
+        /// <summary>
+        /// Gets a certain user based on their id.
+        /// </summary>
+        /// <param name="userID">The user's id</param>
+        /// <returns>The <code>User</code> object matching the id</returns>
         public User GetUser(int userID)
         {
             var connection = new MySqlConnection(connStr);

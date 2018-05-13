@@ -7,8 +7,17 @@ using System.Web;
 
 namespace WebShopForm.Business
 {
+    /// <summary>
+    /// This class is responsible for all E-mail messaging
+    /// </summary>
     public class MailSender
     {
+        /// <summary>
+        /// Send a confirmation E-mail to a certain <code>User</code>.
+        /// </summary>
+        /// <param name="user">The <code>User</code> who should receive a mail</param>
+        /// <param name="orderId">The order ID</param>
+        /// <param name="totalPrice">The total price that should be payed</param>
         public void SendMail(User user, int orderId, double totalPrice)
         {
             try
