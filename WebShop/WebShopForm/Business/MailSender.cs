@@ -38,7 +38,7 @@ namespace WebShopForm.Business
             {
                 Subject = "Order online guitar shop",
                 Body = "Your order with id " + orderId + " has been received successfully." +
-                            Environment.NewLine + "After a payment of " + totalPrice + " on bank account number BE91 5612 1236 7895 we will  continue the shipment of the products." +
+                            Environment.NewLine + "After a payment of " + totalPrice + " EUR on bank account number BE91 5612 1236 7895 we will  continue the shipment of the products." +
                             Environment.NewLine + "Please add your order id as a payment reference." +
                             Environment.NewLine + "Thank you for your trust!"
             };

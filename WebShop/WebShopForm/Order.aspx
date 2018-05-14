@@ -16,7 +16,7 @@
             <div class="menu">
                 <ul class="menu-list">
                     <li><a href="Products.aspx">Products overview</a></li>
-                    <li><a href="Order.aspx">Cart</a></li>
+                    <li><a href="Cart.aspx">Cart</a></li>
                     <li><a href="Logout.aspx">Logout</a></li>
                 </ul>
             </div>
@@ -32,7 +32,7 @@
                     After a payment of
                
                     <asp:Label ID="LBLPrice" runat="server"></asp:Label>
-                    &nbsp;on bank account number<strong> BE91 5612 1236 7895 </strong>we will&nbsp; continue the shipment of the products.
+                    &nbsp;EUR&nbsp;on bank account number<strong> BE91 5612 1236 7895 </strong>we will&nbsp; continue the shipment of the products.
                 </p>
                 <p>
                     Please add your order id as a payment reference.</p>
