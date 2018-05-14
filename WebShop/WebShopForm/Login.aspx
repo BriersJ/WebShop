@@ -6,17 +6,12 @@
 <head runat="server">
     <link href="style.css" type="text/css" rel="stylesheet" />
     <title>Login</title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="loginbox-main">
             <div class="loginbox-box">
-                <table class="auto-style1">
+                <table>
                     <tr>
                         <td>Username:</td>
                         <td>

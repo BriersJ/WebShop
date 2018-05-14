@@ -121,3 +121,15 @@ li a {
 .active {
     background-color: #FF5722;
 }
+
+.max-width {
+    width: 100%;
+}
+
+.cart-details {
+    width: 700px;
+}
+
+.cart-details-first {
+    width: 400px;
+}

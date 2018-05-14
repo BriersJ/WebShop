@@ -6,15 +6,6 @@
 <head runat="server">
     <link href="style.css" type="text/css" rel="stylesheet" />
     <title>Cart</title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 700px;
-        }
-
-        .auto-style2 {
-            width: 400px;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -46,9 +37,9 @@
                         </asp:CommandField>
                     </Columns>
                 </asp:GridView>
-                <table class="auto-style1">
+                <table class="cart-details">
                     <tr>
-                        <td class="auto-style2">&nbsp;</td>
+                        <td class="cart-details-first">&nbsp;</td>
                         <td>
                             <asp:Label ID="LBL1" runat="server" Text="Price without BTW:"></asp:Label>
                             <br />

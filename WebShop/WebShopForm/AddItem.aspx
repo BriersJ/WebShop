@@ -6,11 +6,6 @@
 <head runat="server">
     <link href="style.css" type="text/css" rel="stylesheet" />
     <title>Product details</title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,13 +21,13 @@
                 </ul>
             </div>
             <div class="content">
-                <table class="auto-style1">
+                <table class="max-width">
                     <tr>
                         <td>
                             <asp:Image ID="Picture" runat="server" Width="150px" />
                         </td>
                         <td>
-                            <table class="auto-style1">
+                            <table class="max-width">
                                 <tr>
                                     <td>Product ID:</td>
                                     <td>
